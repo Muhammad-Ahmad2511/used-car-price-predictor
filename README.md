@@ -29,7 +29,7 @@ AI-powered price prediction with Explainable AI (XAI) for Pakistan's used car ma
 | Attribute | Details |
 |-----------|---------|
 | **Source** | PakWheels.com |
-| **Size** | ~1,599 clean records |
+| **Size** |  24135 clean records |
 | **Features** | 26 total (11 base + 15 engineered) |
 | **Target** | Price (PKR) |
 | **Time Period** | 2020-2026 |

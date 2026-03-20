@@ -36,11 +36,13 @@ AI-powered price prediction with Explainable AI (XAI) for Pakistan's used car ma
 
 ### Sample Data
 
+### Sample Data
+
 | Make | Model | Year | Mileage | Engine | Assembly | City | Price (PKR) |
 |------|-------|------|---------|--------|----------|------|-------------|
-| Toyota | Corolla | 2020 | 45,000 | 1800 | Local | Lahore | 4,500,000 |
-| Honda | Civic | 2019 | 62,000 | 1500 | Local | Karachi | 4,200,000 |
-| Suzuki | Alto | 2021 | 28,000 | 660 | Local | Islamabad | 1,850,000 |
+| Mazda | RX8 | 2004 | 109,000 | 1300 | Imported | Islamabad | 3,500,000 |
+| Toyota | Corolla | 2020 | 39,500 | 1300 | Local | Islamabad | 4,650,000 |
+| Nissan | Dayz | 2022 | 19,999 | 660 | Imported | Lahore | 4,590,000 |
 
 ---
 

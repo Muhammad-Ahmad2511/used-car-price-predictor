@@ -9,7 +9,6 @@ AI-powered price prediction with Explainable AI (XAI) for Pakistan's used car ma
 **Problem**: Price opacity and information asymmetry in Pakistan's used car market  
 **Solution**: ML-based price predictor with SHAP explainability  
 **Track**: AI Track A - Application Development  
-**Student ID**: 23L-2511
 
 ---
 

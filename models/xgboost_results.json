@@ -1,0 +1,88 @@
+{
+  "model": "XGBoost",
+  "best_params": {
+    "colsample_bytree": 0.8,
+    "learning_rate": 0.1,
+    "max_depth": 7,
+    "min_child_weight": 1,
+    "n_estimators": 300,
+    "subsample": 1.0
+  },
+  "train_metrics": {
+    "mae": 256881.390625,
+    "rmse": 464040.9052314246,
+    "r2": 0.9908322095870972
+  },
+  "val_metrics": {
+    "mae": 515831.90625,
+    "rmse": 1449567.6238327068,
+    "r2": 0.907242476940155
+  },
+  "test_metrics": {
+    "mae": 571006.5,
+    "rmse": 1844519.207910831,
+    "r2": 0.8613995313644409
+  },
+  "feature_importance": [
+    {
+      "feature": "brand_tier",
+      "importance": 0.20682908594608307
+    },
+    {
+      "feature": "brand_engine_interact",
+      "importance": 0.13411268591880798
+    },
+    {
+      "feature": "car_age",
+      "importance": 0.13218437135219574
+    },
+    {
+      "feature": "engine_cc",
+      "importance": 0.10218885540962219
+    },
+    {
+      "feature": "engine_category",
+      "importance": 0.07789836078882217
+    },
+    {
+      "feature": "age_group",
+      "importance": 0.0765758603811264
+    },
+    {
+      "feature": "year",
+      "importance": 0.05455508455634117
+    },
+    {
+      "feature": "age_mileage_interact",
+      "importance": 0.029681691899895668
+    },
+    {
+      "feature": "fuel_type",
+      "importance": 0.025911275297403336
+    },
+    {
+      "feature": "model",
+      "importance": 0.024688120931386948
+    },
+    {
+      "feature": "assembly",
+      "importance": 0.024122770875692368
+    },
+    {
+      "feature": "reg_city",
+      "importance": 0.022174706682562828
+    },
+    {
+      "feature": "is_imported",
+      "importance": 0.020239679142832756
+    },
+    {
+      "feature": "is_hybrid",
+      "importance": 0.01826220005750656
+    },
+    {
+      "feature": "make",
+      "importance": 0.013181380927562714
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "model": "LightGBM",
+  "best_params": {
+    "learning_rate": 0.05,
+    "max_depth": -1,
+    "min_child_samples": 20,
+    "n_estimators": 300,
+    "num_leaves": 70,
+    "subsample": 0.8
+  },
+  "train_metrics": {
+    "mae": 374429.30730269797,
+    "rmse": 865448.6295676191,
+    "r2": 0.9681114011936555
+  },
+  "val_metrics": {
+    "mae": 538848.5269564233,
+    "rmse": 1482601.0316331189,
+    "r2": 0.9029666974064768
+  },
+  "test_metrics": {
+    "mae": 562416.5991951063,
+    "rmse": 1764931.6309306005,
+    "r2": 0.8731021965136184
+  },
+  "feature_importance": [
+    {
+      "feature": "model",
+      "importance": 3769
+    },
+    {
+      "feature": "engine_cc",
+      "importance": 2734
+    },
+    {
+      "feature": "mileage_per_year",
+      "importance": 1947
+    },
+    {
+      "feature": "mileage_km",
+      "importance": 1869
+    },
+    {
+      "feature": "age_mileage_interact",
+      "importance": 1867
+    },
+    {
+      "feature": "year",
+      "importance": 1833
+    },
+    {
+      "feature": "brand_engine_interact",
+      "importance": 1698
+    },
+    {
+      "feature": "make",
+      "importance": 1270
+    },
+    {
+      "feature": "reg_city",
+      "importance": 899
+    },
+    {
+      "feature": "city",
+      "importance": 698
+    },
+    {
+      "feature": "fuel_type",
+      "importance": 611
+    },
+    {
+      "feature": "assembly",
+      "importance": 418
+    },
+    {
+      "feature": "brand_tier",
+      "importance": 373
+    },
+    {
+      "feature": "age_group",
+      "importance": 145
+    },
+    {
+      "feature": "transmission",
+      "importance": 133
+    }
+  ]
+}

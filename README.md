@@ -162,6 +162,8 @@ print(f"Predicted Price: Rs {predictions[0]:,.0f}")
 ---
 
 ## 📈 Data Pipeline
+
+```
 PakWheels.com
       ↓
 Web Scraping
@@ -181,6 +183,7 @@ EDA & Visualization (5 plots)
 Model Training (XGBoost + LightGBM)
       ↓
 Model Evaluation & Selection
+```
 ---
 
 ## 🔧 Features

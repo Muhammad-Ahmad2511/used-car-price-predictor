@@ -62,6 +62,8 @@ AI-powered price prediction with Explainable AI (XAI) for Pakistan's used car ma
 ---
 
 ## 📁 Project Structure
+
+```
 project/
 │
 ├── data_scripts/                          # Data pipeline
@@ -96,6 +98,7 @@ project/
 ├── requirements.txt                       # Python dependencies
 ├── README.md                              # This file
 └── .gitignore                             # Git ignore rules
+```
 
 ---
 

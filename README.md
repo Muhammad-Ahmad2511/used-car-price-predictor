@@ -64,38 +64,38 @@ AI-powered price prediction with Explainable AI (XAI) for Pakistan's used car ma
 ## 📁 Project Structure
 project/
 │
-├── data_scripts/              # Data pipeline
-│   ├── scrape_pakwheels.py    # Web scraping
-│   ├── 02_data_cleaning.py    # Data cleaning
-│   └── 03_feature_engineering.py  # Feature engineering
+├── data_scripts/                          # Data pipeline
+│   ├── scrape_pakwheels.py                # Web scraping
+│   ├── 02_data_cleaning.py                # Data cleaning
+│   └── 03_feature_engineering.py          # Feature engineering
 │
-├── eda/                       # Exploratory analysis
-│   ├── eda_analysis.py        # Generate all plots
-│   └── plots/                 # Visualizations
+├── eda/                                   # Exploratory analysis
+│   ├── eda_analysis.py                    # Generate all plots
+│   └── plots/                             # Visualizations
 │       ├── price_distribution.png
 │       ├── feature_distributions.png
 │       ├── categorical_distributions.png
 │       ├── correlation_matrix.png
 │       └── price_vs_features.png
 │
-├── models/                    # ML models (Deliverable 2)
-│   ├── train_xgboost.ipynb    # XGBoost training
-│   ├── train_lightgbm.ipynb   # LightGBM training
-│   ├── evaluate_models.ipynb  # Model comparison
-│   ├── xgboost_model.pkl      # Trained XGBoost (1.9 MB)
-│   ├── lightgbm_model.pkl     # Trained LightGBM (1.8 MB)
-│   ├── label_encoders.pkl     # Encoders (40 KB)
-│   ├── xgboost_results.json   # XGBoost metrics
-│   ├── lightgbm_results.json  # LightGBM metrics
-│   └── evaluation/            # Evaluation outputs
+├── models/                                # ML models (Deliverable 2)
+│   ├── train_xgboost.ipynb                # XGBoost training
+│   ├── train_lightgbm.ipynb               # LightGBM training
+│   ├── evaluate_models.ipynb              # Model comparison
+│   ├── xgboost_model.pkl                  # Trained XGBoost (1.9 MB)
+│   ├── lightgbm_model.pkl                 # Trained LightGBM (1.8 MB)
+│   ├── label_encoders.pkl                 # Encoders (40 KB)
+│   ├── xgboost_results.json               # XGBoost metrics
+│   ├── lightgbm_results.json              # LightGBM metrics
+│   └── evaluation/                        # Evaluation outputs
 │       ├── feature_importance_comparison.png
 │       ├── r2_comparison.png
 │       ├── mae_rmse_comparison.png
 │       └── evaluation_summary.txt
 │
-├── requirements.txt           # Python dependencies
-├── README.md                  # This file
-├── .gitignore                 # Git ignore rules
+├── requirements.txt                       # Python dependencies
+├── README.md                              # This file
+└── .gitignore                             # Git ignore rules
 
 ---
 
@@ -159,20 +159,24 @@ print(f"Predicted Price: Rs {predictions[0]:,.0f}")
 ---
 
 ## 📈 Data Pipeline
-PakWheels.com → Web Scraping → Raw CSV (24,728 rows)
-↓
+PakWheels.com
+      ↓
+Web Scraping
+      ↓
+Raw CSV (24,728 rows)
+      ↓
 Data Cleaning (97.6% retention)
-↓
+      ↓
 Clean CSV (24,135 rows)
-↓
+      ↓
 Feature Engineering (+15 features)
-↓
+      ↓
 Final Dataset (26 columns)
-↓
+      ↓
 EDA & Visualization (5 plots)
-↓
+      ↓
 Model Training (XGBoost + LightGBM)
-↓
+      ↓
 Model Evaluation & Selection
 ---
 

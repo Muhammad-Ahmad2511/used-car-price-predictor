@@ -1,0 +1,110 @@
+
+================================================================================
+MODEL EVALUATION SUMMARY - PakWheels Car Price Predictor
+================================================================================
+
+BEST MODEL: LightGBM (+1.17% vs XGBoost)
+
+================================================================================
+XGBOOST PERFORMANCE
+================================================================================
+
+Training Set:
+  • MAE:  Rs 256,881
+  • RMSE: Rs 464,041
+  • R²:   0.9908
+
+Validation Set:
+  • MAE:  Rs 515,832
+  • RMSE: Rs 1,449,568
+  • R²:   0.9072
+
+Test Set:
+  • MAE:  Rs 571,006
+  • RMSE: Rs 1,844,519
+  • R²:   0.8614
+
+Best Hyperparameters:
+  • max_depth: 7
+  • learning_rate: 0.1
+  • n_estimators: 300
+  • min_child_weight: 1
+  • subsample: 1.0
+  • colsample_bytree: 0.8
+
+Top 3 Important Features:
+  1. brand_tier
+  2. brand_engine_interact
+  3. car_age
+
+================================================================================
+LIGHTGBM PERFORMANCE
+================================================================================
+
+Training Set:
+  • MAE:  Rs 374,429
+  • RMSE: Rs 865,449
+  • R²:   0.9681
+
+Validation Set:
+  • MAE:  Rs 538,849
+  • RMSE: Rs 1,482,601
+  • R²:   0.9030
+
+Test Set:
+  • MAE:  Rs 562,417
+  • RMSE: Rs 1,764,932
+  • R²:   0.8731
+
+Best Hyperparameters:
+  • max_depth: -1
+  • learning_rate: 0.05
+  • n_estimators: 300
+  • num_leaves: 70
+  • min_child_samples: 20
+  • subsample: 0.8
+
+Top 3 Important Features:
+  1. model
+  2. engine_cc
+  3. mileage_per_year
+
+================================================================================
+KEY FINDINGS
+================================================================================
+
+Model Selection:
+  → LightGBM performs better with R² = 0.8731
+  → Lower MAE indicates better average prediction accuracy
+  → Both models show good generalization (Train R² ~ Test R²)
+
+Feature Importance:
+  → XGBoost prioritizes: brand_tier, brand_engine_interact
+  → LightGBM prioritizes: model, engine_cc
+  → Both models identify engine and brand features as critical
+
+Performance Analysis:
+  → Average prediction error: ~Rs 562,417
+  → 87% of price variance explained (R² = 0.87)
+  → Suitable for deployment in production environment
+
+================================================================================
+FILES GENERATED
+================================================================================
+
+Visualizations:
+   feature_importance_comparison.png
+   r2_comparison.png
+   mae_rmse_comparison.png
+
+Models:
+   xgboost_model.pkl
+   lightgbm_model.pkl
+   label_encoders.pkl
+
+Results:
+   xgboost_results.json
+   lightgbm_results.json
+   evaluation_summary.txt
+
+

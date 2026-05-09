@@ -629,35 +629,23 @@ with col1:
     mileage_km  = st.number_input("Total Mileage (km)", min_value=0, max_value=max_mileage,
                                    value=min(50_000, max_mileage), step=1000,
                                    help=f"Odometer reading — how many kilometres the car has driven in total. Max shown is ~30,000 km/year × car age ({car_age_ui} yr).")
-    # "Other" model → allow the full engine range; let the user specify freely.
+    # Engine range: strictly the stock range this model was ever offered with.
+    # "Other" → allow the full known market range since we don't know the car.
     if car_model == "Other":
-        stock_min, stock_max = (660, 6000)
+        eng_min, eng_max = (660, 6000)
     else:
-        stock_min, stock_max = MODEL_ENGINE_RANGE.get(car_model, (660, 3000))
-    stock_default = stock_min  # base variant engine
-    # Allow editing beyond stock — engines get swapped, imports vary.
-    # Flex range = ±50% of stock default, clamped to 660–6000 cc.
-    flex_min = max(660,  int(stock_default * 0.5 // 100 * 100))
-    flex_max = min(6000, int(stock_default * 2.0 // 100 * 100) + 100)
-    # If MODEL_ENGINE_RANGE already has a wide range (e.g. "Other"), keep it.
-    if stock_max - stock_min > 1000:
-        flex_min, flex_max = stock_min, stock_max
+        eng_min, eng_max = MODEL_ENGINE_RANGE.get(car_model, (660, 3000))
+    eng_default = eng_min  # base / entry variant
     engine_cc = st.number_input(
         "Engine Displacement (cc)",
-        min_value=flex_min, max_value=flex_max,
-        value=stock_default, step=100,
+        min_value=eng_min, max_value=eng_max,
+        value=eng_default, step=100,
         help=(
-            f"Stock engine for this model: {stock_min}–{stock_max} cc. "
-            "You can adjust this if the engine was swapped or you have a non-standard variant. "
+            f"Valid engine range for {car_model}: {eng_min}–{eng_max} cc "
+            f"(the smallest to largest engine this model was ever sold with). "
             "Bigger engines mean more power and usually a higher resale price."
         )
     )
-    if engine_cc < stock_min or engine_cc > stock_max:
-        st.caption(
-            f"⚙️ **Non-stock engine** — typical range for {car_model} is "
-            f"{stock_min}–{stock_max} cc. The model will still predict, "
-            "but accuracy may be lower for heavily modified cars."
-        )
 
 with col2:
     st.markdown("**Type & Origin**")

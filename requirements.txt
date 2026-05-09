@@ -12,7 +12,6 @@ seaborn>=0.13.0
 
 # Machine Learning
 scikit-learn>=1.4.0
-xgboost>=2.1.0
 lightgbm>=4.3.0
 
 # Explainability

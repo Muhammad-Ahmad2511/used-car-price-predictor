@@ -6,8 +6,7 @@ AI-powered price prediction with Explainable AI (XAI) for Pakistan's used car ma
 
 ## 🌐 Deployment
 
-**Live App**: [https://your-app-name.streamlit.app](https://your-app-name.streamlit.app)  
-> *(Replace with your actual Streamlit Cloud URL after deployment)*
+**Live App**: [https://muhammad-ahmad2511-used-car-price-predictor.streamlit.app/]
 
 ---
 

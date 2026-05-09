@@ -28,6 +28,8 @@ AI-powered price prediction with Explainable AI (XAI) for Pakistan's used car ma
 - ✅ Machine Learning models (XGBoost, LightGBM)
 - ✅ Explainable AI (SHAP integration)
 - ✅ Streamlit web application with real-time predictions
+- ✅ Smart make/model dropdowns — only encoder-known models shown; "Other" always last
+- ✅ Full fuel type & transmission freedom when model is "Other"
 
 ---
 
@@ -45,9 +47,9 @@ AI-powered price prediction with Explainable AI (XAI) for Pakistan's used car ma
 
 | Make | Model | Year | Mileage | Engine | Assembly | City | Price (PKR) |
 |------|-------|------|---------|--------|----------|------|-------------|
-| Mazda | RX8 | 2004 | 109,000 | 1300 | Imported | Islamabad | 3,500,000 |
+| Mazda | Other | 2004 | 109,000 | 1300 | Imported | Islamabad | 3,500,000 |
 | Toyota | Corolla | 2020 | 39,500 | 1300 | Local | Islamabad | 4,650,000 |
-| Nissan | Dayz | 2022 | 19,999 | 660 | Imported | Lahore | 4,590,000 |
+| Nissan | Other | 2022 | 19,999 | 660 | Imported | Lahore | 4,590,000 |
 
 ---
 
@@ -210,6 +212,36 @@ PakWheels.com → Web Scraping → Raw CSV
 **Categorical (4):** `brand_tier`, `city_tier`, `price_category`, `engine_category`  
 **Numerical (2):** `price_per_cc`, `log_price`  
 **Interactions (2):** `age_mileage_interact`, `brand_engine_interact`  
+
+---
+
+## 🚗 Supported Makes & Models
+
+The app supports **30 car makes**. Models shown in the dropdown are limited to those known by the trained encoder. For any make, selecting **"Other"** as the model enables free selection of all fuel types and transmissions.
+
+| Make | Known Models in Encoder |
+|------|------------------------|
+| **Toyota** | Corolla (all variants), Prius, Aqua, Vitz, Fortuner, Prado, Land Cruiser, Hilux |
+| **Honda** | Civic (all variants), City (all variants), Vezel, Hr-V, Cr-V, Br-V |
+| **Suzuki** | Alto, Wagon R, Cultus, Swift, Mehran, Bolan |
+| **Kia** | Sportage, Picanto, Carnival |
+| **Hyundai** | Tucson (all variants) |
+| **Daihatsu** | Mira, Cuore |
+| **Mitsubishi** | Pajero, Lancer Glx |
+| **Audi** | A3, A4, A6, A8, Q5, Q7, Q8 |
+| **BMW** | 3/5/7 Series, X3, X5 |
+| **Mercedes / Mercedes Benz** | C-Class, E-Class, S-Class, GLC, GLE |
+| **Lexus** | Es 350, Lx 570, Rx 350 |
+| **Volkswagen** | Golf, Passat, Tiguan |
+| **Nissan, MG, Haval, Changan, Chery, Mazda, Subaru, Ford, Jeep, Proton, FAW, DFSK, JAC, BYD, Tesla** | Other only |
+
+### "Other" Model Behaviour
+When **"Other"** is selected as the model:
+- All fuel types are available: Petrol, Hybrid, Diesel, CNG, Electric, LPG, PHEV
+- Both transmissions are available: Automatic, Manual
+- Engine cc range opens to 660–6000 cc
+- No fuel/transmission validation is applied at prediction time
+- The encoder maps the input to its "Other" class internally — no warnings are shown
 
 ---
 

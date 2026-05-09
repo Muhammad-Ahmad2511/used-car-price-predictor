@@ -375,6 +375,19 @@ MODEL_ENGINE_RANGE = {
     "Cuore": (850, 850), "Cuore Cx": (850, 850),
     "Pajero": (3000, 3500), "Pajero Exceed 3.5": (3500, 3500),
     "Lancer Glx 1.5": (1500, 1500), "Lancer Glx 1.6": (1600, 1600),
+    # Audi
+    "A3": (1400, 2000), "A4": (1400, 3000), "A6": (1984, 3000),
+    "A8": (3000, 4200), "Q5": (1984, 3000), "Q7": (2995, 3600), "Q8": (2995, 4000),
+    # BMW
+    "3 Series": (1998, 3000), "5 Series": (1998, 3000), "7 Series": (2998, 4400),
+    "X3": (1998, 3000), "X5": (2998, 4400), "X6": (2998, 4400),
+    # Mercedes / Mercedes Benz
+    "C-Class": (1500, 3000), "E-Class": (1991, 3500), "S-Class": (2996, 5500),
+    "GLC": (1991, 2996), "GLE": (1991, 2996),
+    # Lexus
+    "Es 350": (3456, 3456), "Lx 570": (5663, 5663), "Rx 350": (3456, 3456),
+    # Volkswagen
+    "Golf": (1200, 2000), "Passat": (1400, 2000), "Tiguan": (1400, 2000),
     "Other": (600, 6000),
 }
 
@@ -631,10 +644,19 @@ with col1:
                                    help=f"Odometer reading — how many kilometres the car has driven in total. Max shown is ~30,000 km/year × car age ({car_age_ui} yr).")
     # Engine range: strictly the stock range this model was ever offered with.
     # "Other" → allow the full known market range since we don't know the car.
+    MAKE_ENGINE_RANGE = {
+        "Audi": (1400, 5000), "Bmw": (1600, 5000), "Mercedes": (1500, 5500),
+        "Mercedes Benz": (1500, 5500), "Lexus": (2500, 5700), "Volkswagen": (1200, 3000),
+        "Toyota": (660, 4700), "Honda": (660, 3500), "Suzuki": (660, 1300),
+        "Kia": (1000, 3500), "Hyundai": (1000, 3000), "Mitsubishi": (1500, 3500),
+        "Nissan": (1000, 3500), "Daihatsu": (660, 1300), "Mazda": (1300, 3000),
+        "Subaru": (1500, 3600), "Ford": (1000, 5000), "Jeep": (2000, 4000),
+    }
     if car_model == "Other":
         eng_min, eng_max = (660, 6000)
     else:
-        eng_min, eng_max = MODEL_ENGINE_RANGE.get(car_model, (660, 3000))
+        make_eng_fallback = MAKE_ENGINE_RANGE.get(make, (660, 6000))
+        eng_min, eng_max = MODEL_ENGINE_RANGE.get(car_model, make_eng_fallback)
     eng_default = eng_min  # base / entry variant
     engine_cc = st.number_input(
         "Engine Displacement (cc)",
@@ -649,11 +671,12 @@ with col1:
 
 with col2:
     st.markdown("**Type & Origin**")
-    # When model is "Other", allow all options — the user knows their car better than we do.
+    # When model is "Other", fall back to the make-level lists so irrelevant
+    # fuel types (e.g. CNG for Audi, Electric for Suzuki) are never shown.
     # For known models, use the model-level lists first, then fall back to make-level.
     if car_model == "Other":
-        valid_fuels = FUEL_TYPES        # full list: Petrol, Hybrid, Diesel, CNG, Electric, Lpg, Phev
-        valid_trans = TRANSMISSIONS     # full list: Automatic, Manual
+        valid_fuels = MAKE_FUEL_TYPES.get(make, FUEL_TYPES)
+        valid_trans = MAKE_TRANSMISSIONS.get(make, TRANSMISSIONS)
     else:
         valid_fuels = MODEL_FUEL_TYPES.get(car_model, MAKE_FUEL_TYPES.get(make, FUEL_TYPES))
         valid_trans = MODEL_TRANSMISSIONS.get(car_model, MAKE_TRANSMISSIONS.get(make, TRANSMISSIONS))
@@ -689,18 +712,21 @@ if predict_btn:
         st.error(f"The {make} {car_model} was not available in {year}. Earliest valid year is {min_year_check}.")
         st.stop()
 
-    # When model is "Other" the user can pick any fuel/transmission — no validation.
-    if car_model != "Other":
+    # Validate fuel and transmission for both known models and "Other".
+    if car_model == "Other":
+        valid_fuels_check = MAKE_FUEL_TYPES.get(make, FUEL_TYPES)
+        valid_trans_check = MAKE_TRANSMISSIONS.get(make, TRANSMISSIONS)
+    else:
         valid_fuels_check = MODEL_FUEL_TYPES.get(car_model, MAKE_FUEL_TYPES.get(make, FUEL_TYPES))
         valid_trans_check = MODEL_TRANSMISSIONS.get(car_model, MAKE_TRANSMISSIONS.get(make, TRANSMISSIONS))
 
-        if fuel_type not in valid_fuels_check:
-            st.error(f"The {make} {car_model} does not come in a {fuel_type} variant. Valid options: {', '.join(valid_fuels_check)}.")
-            st.stop()
+    if fuel_type not in valid_fuels_check:
+        st.error(f"The {make} {car_model} does not come in a {fuel_type} variant. Valid options: {', '.join(valid_fuels_check)}.")
+        st.stop()
 
-        if transmission not in valid_trans_check:
-            st.error(f"The {make} {car_model} is not available with {transmission} transmission. Valid options: {', '.join(valid_trans_check)}.")
-            st.stop()
+    if transmission not in valid_trans_check:
+        st.error(f"The {make} {car_model} is not available with {transmission} transmission. Valid options: {', '.join(valid_trans_check)}.")
+        st.stop()
 
     input_df         = build_input_df(make, car_model, year, mileage_km,
                                       engine_cc, transmission, assembly,
